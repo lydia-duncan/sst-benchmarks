@@ -1,20 +1,21 @@
 CXX=$(shell sst-config --CXX)
 CXXFLAGS=$(shell sst-config --ELEMENT_CXXFLAGS) -g
 LDFLAGS=$(shell sst-config --ELEMENT_LDFLAGS)
-PARAMS=
+# PARAMS=
 #PARAMS="-DENABLE_SSTDBG"
+PARAMS="-DENABLE_SSTCHECKPOINT"
 
-SRCS=Simulator.cpp Ponger.cpp GlobalParams.cpp HyperPonger.cpp
+SRCS=cell.cpp onDemandCell.cpp
 
-all: libpingpong.so install
+all: libgol.so install
 
-libpingpong.so: $(SRCS)
+libgol.so: $(SRCS)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(PARAMS) -o $@ $^
 
 install:
-	sst-register pingpong pingpong_LIBDIR=$(CURDIR)
+	sst-register gol gol_LIBDIR=$(CURDIR)
 
 clean:
-	rm -rf tests/graphs libpingpong.so
-	sst-register -u pingpong
+	rm -rf libgol.so
+	sst-register -u libgol
 	rm *.json *.tmp *.time *.out
