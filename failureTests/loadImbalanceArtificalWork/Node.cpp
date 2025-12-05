@@ -51,7 +51,7 @@ void FasterNode::serialize_order(SST::Core::Serialization::serializer& ser) {
 
 static double artificialWorkValue = 1.1;
 static double artificialWorkMultiplier = 1.23;
-static void conductArtificialWork(int64_t count) {
+void conductArtificialWork(int64_t count) {
   for(int64_t i = 0; i < count; i++) {
     artificialWorkValue += artificialWorkMultiplier;
     if (i % 2 == 0) {
