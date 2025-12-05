@@ -54,6 +54,18 @@ static double artificialWorkMultiplier = 1.23;
 static void conductArtificialWork(int64_t count) {
   for(int64_t i = 0; i < count; i++) {
     artificialWorkValue += artificialWorkMultiplier;
+    if (i % 2 == 0) {
+      artificialWorkValue -= 0.7;
+    }
+    if (i % 3 == 0) {
+      artificialWorkValue *= 1.6;
+    }
+    if (i % 5 == 0) {
+      artificialWorkValue /= 1.2;
+    }
+    if (i % 7 == 0) {
+      artificialWorkValue /= 1.35;
+    }
   }
 }
 
